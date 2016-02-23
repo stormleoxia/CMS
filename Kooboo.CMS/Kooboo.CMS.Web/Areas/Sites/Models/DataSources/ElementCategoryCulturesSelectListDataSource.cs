@@ -24,12 +24,12 @@ namespace Kooboo.CMS.Web.Areas.Sites.Models.DataSources
         public IEnumerable<System.Web.Mvc.SelectListItem> GetSelectListItems(RequestContext requestContext, string filter)
         {
             var site = new Site(requestContext.GetRequestValue("siteName"));
-            var categories = Kooboo.CMS.Sites.Services.ServiceFactory.LabelManager.GetCategories(site).Where(it => !string.IsNullOrEmpty(it.Category));
+            var categories = Kooboo.CMS.Sites.Services.ServiceFactory.LabelManager.GetCategories(site).Where(it => !string.IsNullOrEmpty(it));
             if (!string.IsNullOrEmpty(filter))
             {
-                categories = categories.Where(it => it.Category.StartsWith(filter, StringComparison.CurrentCultureIgnoreCase));
+                categories = categories.Where(it => it.StartsWith(filter, StringComparison.CurrentCultureIgnoreCase));
             }
-            return categories.Select(it => new SelectListItem() { Text = it.Category, Value = it.Category });
+            return categories.Select(it => new SelectListItem() { Text = it, Value = it });
         }
 
         #endregion

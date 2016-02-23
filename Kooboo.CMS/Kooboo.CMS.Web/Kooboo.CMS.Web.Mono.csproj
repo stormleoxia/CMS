@@ -19,12 +19,14 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <TargetFrameworkProfile />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +57,9 @@
   <ItemGroup>
     <Reference Include="DiffPlex">
       <HintPath>..\..\Lib\DiffPlex.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\..\Lib\dotLess\dotless.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
@@ -105,6 +110,7 @@
     <Compile Include="Areas\Account\Models\ChangeLanguageModel.cs" />
     <Compile Include="Areas\Account\Models\CreateRoleModel.cs" />
     <Compile Include="Areas\Account\Models\DataSources\EnabledLanguagesDataSource.cs" />
+    <Compile Include="Areas\Account\Models\DataSources\RolesDatasource.cs" />
     <Compile Include="Areas\Account\Models\EditUserModel.cs" />
     <Compile Include="Areas\Account\Models\Grid2\User_ResetPassword_GridItemColumn.cs" />
     <Compile Include="Areas\Account\Models\LoginModel.cs" />
@@ -182,6 +188,7 @@
     <Compile Include="Areas\Contents\Models\Schema_Metadata.cs" />
     <Compile Include="Areas\Contents\Models\SelectableViewModel.cs" />
     <Compile Include="Areas\Contents\Models\SendingSetting_Metadata.cs" />
+    <Compile Include="Areas\Contents\Models\TextContentImportModel.cs" />
     <Compile Include="Areas\Contents\Models\TextContentDiffModel.cs" />
     <Compile Include="Areas\Contents\Models\TextContentGrid.cs" />
     <Compile Include="Areas\Contents\Models\TextFolder_Metadata.cs" />
@@ -212,19 +219,28 @@
     <Compile Include="Areas\Sites\Controllers\ABSiteSettingController.cs" />
     <Compile Include="Areas\Sites\Controllers\ABRuleSettingController.cs" />
     <Compile Include="Areas\Sites\Menu\MembershipMenuItems.cs" />
+    <Compile Include="Areas\Sites\Menu\HtmlBlockNamespaceMenuItems.cs" />
     <Compile Include="Areas\Sites\Models\ABPageTestHitsReport.cs" />
     <Compile Include="Areas\Sites\Models\ABPageTestResult_Metadata.cs" />
+    <Compile Include="Areas\Sites\Models\DataSources\RouteTypesDatasource.cs" />
     <Compile Include="Areas\Sites\Models\DataSources\MembershipDataSource.cs" />
     <Compile Include="Areas\Sites\Models\DataSources\SiteMembershipGroupDataSource.cs" />
     <Compile Include="Areas\Sites\Models\DataSources\SubmissionPluginsDataSource.cs" />
     <Compile Include="Areas\Sites\Models\Grid2\ABPageTestHitsReport_HitTimes_GridItemColumn.cs" />
     <Compile Include="Areas\Sites\Models\Grid2\ABPageTestHitsReport_ShowTimes_GridItemColumn.cs" />
+    <Compile Include="Areas\Sites\Models\Grid2\Inheritable_Status_GridItemColumn.cs" />
+    <Compile Include="Areas\Sites\Models\Grid2\InstallationContext_GridItem.cs" />
+    <Compile Include="Areas\Sites\Models\Grid2\InstallationContext_TargetVersion_Column.cs" />
+    <Compile Include="Areas\Sites\Models\Grid2\InstallationContext_SourceVersion_Column.cs" />
+    <Compile Include="Areas\Sites\Models\Grid2\Label_Value_GridItemColumn.cs" />
     <Compile Include="Areas\Sites\Models\Grid2\Page_Navigation_ShowInMenu_SortableGridColumn.cs" />
     <Compile Include="Areas\Sites\Models\Grid2\Page_Navigation_ShowInMenu_GridItemColumn.cs" />
     <Compile Include="Areas\Sites\Models\Grid2\HitReport_GridItemColumn.cs" />
     <Compile Include="Areas\Sites\Models\HtmlMeta_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\ImportRepositoryModel.cs" />
     <Compile Include="Areas\Sites\Models\ImportSiteModel.cs" />
+    <Compile Include="Areas\Sites\Models\InstallationContext_Metadata.cs" />
+    <Compile Include="Areas\Sites\Models\Label_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\LanguageVisitRule_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\PagePermission_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\ProxyPosition_Metadata.cs" />
@@ -245,18 +261,32 @@
     <Compile Include="Areas\Sites\Models\ABRuleSetting_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\SiteTemplate_ViewModel.cs" />
     <Compile Include="Areas\Sites\Models\QueryStringVisitRule_Metadata.cs" />
+    <Compile Include="Areas\Sites\Views\Page\PageIndexToolbarProvider.cs" />
+    <Compile Include="Interoperability\MetaWeblog\BloggerAPI.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interoperability\MetaWeblog\MetaWeblogRouteHandler.cs" />
     <Compile Include="KoobooCMSHttpApplicationEvents.cs" />
+    <Compile Include="Misc\DynamicClientResourceDIFactory.cs" />
+    <Compile Include="Misc\LessCssProvider.cs" />
+    <Compile Include="Misc\RedirectManagerActionFilterAttribute.cs" />
+    <Compile Include="Misc\RenderHelper.cs" />
     <Compile Include="Models\AllPropertiesResolver.cs" />
     <Compile Include="Models\ImportModel.cs" />
-    <Compile Include="Models\RelationModel.cs" />
+    <Compile Include="Models\RelationModel_Metadata.cs" />
     <Compile Include="ReferrerCheckingModule.cs" />
     <Compile Include="SortByExtension.cs" />
     <Content Include="Areas\Account\Menu.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Account\WebResources.config" />
+    <Content Include="Areas\Account\WebResources.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Contents\Menu.config">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Contents\Views\TextContent\ShowOriginalVersions.cshtml">
+      <SubType>Code</SubType>
     </Content>
     <Content Include="Areas\Contents\WebResources.config">
       <SubType>Designer</SubType>
@@ -407,9 +437,7 @@
     <Compile Include="Areas\Sites\Models\User_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\VersionInfo_Metadata.cs" />
     <Compile Include="Areas\Sites\Models\View_Metadata.cs" />
-    <Compile Include="Areas\Sites\SiteCustomTabs.cs" />
     <Compile Include="Areas\Sites\SitesAreaRegistration.cs" />
-    <Compile Include="Areas\Sites\PageCustomTabs.cs" />
     <Compile Include="Areas\SubmissionControllerBase.cs" />
     <Compile Include="Authorizations\AuthorizationAttribute.cs" />
     <Compile Include="Authorizations\AuthorizationHelpers.cs" />
@@ -428,7 +456,6 @@
     <Compile Include="Grid2\SortableGridColumn.cs" />
     <Compile Include="HealthMonitoring\TextFileWebEventProvider.cs" />
     <Compile Include="HtmlExtensions.cs" />
-    <Compile Include="Interoperability\MetaWeblog\BloggerAPI.cs" />
     <Compile Include="Interoperability\MetaWeblog\MetaWeblogAPI.cs" />
     <Compile Include="Interoperability\MetaWeblog\MetaWeblogAPIHandler.cs" />
     <Compile Include="Json_netResult.cs" />
@@ -639,9 +666,12 @@
     <Content Include="Images\Default.png" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\loading.gif" />
+    <Content Include="Images\svg-content.png" />
     <Content Include="Images\svg-edit.png" />
     <Content Include="Images\svg-export.png" />
+    <Content Include="Images\svg-membership.png" />
     <Content Include="Images\svg-preview.png" />
+    <Content Include="Images\svg-site.png" />
     <Content Include="Images\svg-view.png" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\aight.js" />
@@ -736,9 +766,12 @@
     <Content Include="Scripts\codemirror\theme\xq-dark.css" />
     <Content Include="Scripts\codemirror\theme\xq-light.css" />
     <Content Include="Scripts\d3.v3.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery.autosize.js" />
     <Content Include="Scripts\jquery.fileDownload.js" />
     <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
+    <Content Include="Scripts\less.js" />
     <Content Include="Scripts\selectivizr-min.js" />
     <Content Include="Scripts\tiny_mce\langs\en.js" />
     <Content Include="Scripts\tiny_mce\langs\zh-cn.js" />
@@ -782,6 +815,7 @@
     <Content Include="Scripts\tiny_mce\plugins\fullscreen\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\hr\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tiny_mce\plugins\importcss\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\insertdatetime\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\insertPage\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\KoobooMediaLibrary\plugin.min.js" />
@@ -797,6 +831,7 @@
     <Content Include="Scripts\tiny_mce\plugins\paste\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\preview\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tiny_mce\plugins\rawcode\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\save\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\searchreplace\plugin.min.js" />
     <Content Include="Scripts\tiny_mce\plugins\spellchecker\plugin.min.js" />
@@ -819,6 +854,8 @@
     <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\icomoon.ttf" />
     <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\icomoon.woff" />
     <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce.svg" />
     <Content Include="Scripts\tiny_mce\skins\lightgray\img\anchor.gif" />
     <Content Include="Scripts\tiny_mce\skins\lightgray\img\loader.gif" />
     <Content Include="Scripts\tiny_mce\skins\lightgray\img\object.gif" />
@@ -828,14 +865,22 @@
     <Content Include="Scripts\tiny_mce\skins\lightgray\skin.min.css" />
     <Content Include="Scripts\tiny_mce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tiny_mce\tinymce.min.js" />
+    <Content Include="Scripts\yardiTip\images\arrow_down.png" />
+    <Content Include="Scripts\yardiTip\images\arrow_top.png" />
     <Content Include="Styles\Diff\Diff.css" />
     <Content Include="Styles\Diff\InView.png" />
     <Content Include="Styles\Diff\Main.css" />
+    <Content Include="Styles\fonts\opensans-bold-webfont.svg" />
+    <Content Include="Styles\fonts\opensans-extrabold-webfont.svg" />
     <Content Include="Styles\fonts\opensans-light-webfont.svg" />
     <Content Include="Styles\fonts\opensans-regular-webfont.svg" />
+    <Content Include="Styles\fonts\opensans-semibold-webfont.svg" />
     <Content Include="Styles\images\icon-insert-page.png" />
+    <Content Include="Styles\images\line-x.png" />
+    <Content Include="Styles\images\line-y.png" />
     <Content Include="Styles\images\media-library.png" />
     <Content Include="Styles\InlineEditing.css" />
+    <Content Include="Styles\jquery-ui-timepicker-addon.css" />
     <Content Include="Styles\jquery-ui.css" />
     <Content Include="Styles\jQuery.jCrop\Jcrop.gif" />
     <Content Include="Styles\jQuery.jCrop\jquery.Jcrop.css" />
@@ -2400,6 +2445,134 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Sites\Views\ModuleManagement\UninstallComplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ABRuleSetting\Finished.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Contents\Views\TextContent\Import.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Contents\Views\Shared\_TextContentGridBreadcrumb.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\Home\UnsyncedPageNode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\EditorTemplates\Spinner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\Shared\_ChooseDataRuleType.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\Reinstall.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\RunReinstallation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\ReinstallComplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\Versions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\RunInstallation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\ModuleManagement\RunUninstallation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tiny_mce\skins\lightgray\fonts\tinymce.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\base.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\main.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\less-element.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\icon.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\sitemap.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\grid.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\common.less" />
+    <Content Include="Styles\reset.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\ui.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\fonts\opensans-bold-webfont.eot" />
+    <Content Include="Styles\fonts\opensans-bold-webfont.ttf" />
+    <Content Include="Styles\fonts\opensans-bold-webfont.woff" />
+    <Content Include="Styles\fonts\opensans-extrabold-webfont.eot" />
+    <Content Include="Styles\fonts\opensans-extrabold-webfont.ttf" />
+    <Content Include="Styles\fonts\opensans-extrabold-webfont.woff" />
+    <Content Include="Styles\fonts\opensans-semibold-webfont.eot" />
+    <Content Include="Styles\fonts\opensans-semibold-webfont.ttf" />
+    <Content Include="Styles\fonts\opensans-semibold-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\form.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\table.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\column.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\jqueryui.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\tinymce.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\_TR.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\relation.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\repository-flowchart.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cms_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ToolbarButton.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ToolbarGroupButtons.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Toolbar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\HtmlBlock\_Grid2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\PageDesign\HtmlBlockNamespace.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Sites\Views\PageDesign\HtmlBlockItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
